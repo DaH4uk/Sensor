@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+    <title>Регистр </title>
+    <style type="text/css">
+        .ui-widget {
+            font-size: 90%;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <h:form>
+        <p:growl id="msgs" showDetail="true"/>
+
+        <h:panelGrid columns="3" cellpadding="8">
+            <p:outputLabel for="meta" value="Meta: " />
+            <p:inputText id="meta" value="#{registerInfoBean.meta}" title="Please enter meta value" style="width: 235px"/>
+            <p:tooltip id="toolTipFocusMeta" for="meta" showEvent="focus" hideEvent="blur" />
+
+            <p:outputLabel for="Status" value="Status: " />
+            <p:inputText id="Status" value="#{registerInfoBean.status}"  title="Please enter Status value" style="width: 235px"/>
+            <p:tooltip id="toolTipFocusStatus" for="Status" showEvent="focus" hideEvent="blur" />
+
+            <p:outputLabel for="Description" value="Description: " />
+            <p:inputText id="Description" value="#{registerInfoBean.description}"  title="Please enter description value" style="width: 235px"/>
+            <p:tooltip id="toolTipFocusDescription" for="Description" showEvent="focus" hideEvent="blur" />
+
+            <p:outputLabel for="Out" value="Out: " />
+            <p:inputText id="Out" value="#{registerInfoBean.out}"  title="Please enter Out value" style="width: 235px"/>
+            <p:tooltip id="toolTipFocusOut" for="Out" showEvent="focus" hideEvent="blur" />
+
+            <p:outputLabel for="Address" value="Address: " />
+            <p:inputText id="Address" value="#{registerInfoBean.address}"  title="Please enter Address value" style="width: 235px"/>
+            <p:tooltip id="toolTipFocusAddress" for="Address" showEvent="focus" hideEvent="blur" />
+
+            <p:outputLabel for="registerDataType" value="Register Data type: " />
+            <p:inputText id="registerDataType" value="#{registerInfoBean.registerDataType}"  title="Please enter Register Data type value" style="width: 235px"/>
+            <p:tooltip id="toolTipFocusRegisterDataType" for="registerDataType" showEvent="focus" hideEvent="blur" />
+
+            <p:outputLabel for="Priority" value="Priority: " disabled="#{registerInfoBean.disabled}" />
+            <p:inputText id="Priority" disabled="#{registerInfoBean.disabled}" value="#{registerInfoBean.priority}" title="Please enter meta Priority value" style="width: 235px"/>
+            <p:tooltip id="toolTipFocusPriority" for="Priority" showEvent="focus" hideEvent="blur" disabled="#{registerInfoBean.disabled}" />
+            <br/>
+            <br/>
+            <p:commandButton value="Сохранить" update="msgs" icon="ui-icon-save" actionListener="#{registerInfoBean.saveRegister}"/>
+            <p:commandButton value="Отмена" update="msgs" icon="ui-icon-close" actionListener="#{registerInfoBean.cancel}"/>
+
+        </h:panelGrid>
+    </h:form>
+
+
+
+</h:body>
+</html>

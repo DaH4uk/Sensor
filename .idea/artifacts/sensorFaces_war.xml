@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="sensorFaces:war">
+    <output-path>$PROJECT_DIR$/sensorFaces/target</output-path>
+    <root id="archive" name="Sensor-0.1b.war">
+      <element id="artifact" artifact-name="sensorFaces:war exploded" />
+    </root>
+  </artifact>
+</component>
