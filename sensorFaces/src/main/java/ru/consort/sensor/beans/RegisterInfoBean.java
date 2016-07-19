@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 /**
  * Created by DaH4uk on 11.07.2016.
  * Realised registerInfo functionality.
+ * Realised functionality of Select dialog window and display .
  * Receives the input of URL from the session map of the FacesContext.
  * https://konsort.planfix.ru/task/32615
  */
@@ -30,6 +31,7 @@ public class RegisterInfoBean {
     private Short refId;
     private String description;
     private TreeNode selectedNode;
+    //default url
     private String url = "Numeric/Numeri1/";
     private boolean disabled;
 
@@ -44,9 +46,10 @@ public class RegisterInfoBean {
 
     @PostConstruct
     public void init() {
-        String parentUrl = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("url");
-        this.url = parentUrl;
+        //get url from Session
+        this.url = (String) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("url");
 
+        //sets fields
         this.meta = RegisterService.getRegistersMap().get(url).getMeta();
         this.status = RegisterService.getRegistersMap().get(url).getStatus();
         this.address = RegisterService.getRegistersMap().get(url).getAddress();
@@ -56,14 +59,11 @@ public class RegisterInfoBean {
         this.refId = RegisterService.getRegistersMap().get(url).getRefId();
         this.description = RegisterService.getRegistersMap().get(url).getDescription();
 
-        if (priority == 0){
-            this.disabled = true;
-        } else {
-            this.disabled = false;
-        }
+        //need for registers, where the priority field is not implemented
+        this.disabled = priority == 0;
 
     }
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    //TODO: I need to implement the functionality of the save button
     public void saveRegister(){
         FacesMessage message = new FacesMessage("Сохранить: ", "Данный функционал еще не реализован");
         FacesContext.getCurrentInstance().addMessage(null, message);

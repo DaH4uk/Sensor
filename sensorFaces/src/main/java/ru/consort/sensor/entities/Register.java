@@ -84,6 +84,7 @@ public class Register {
         return description;
     }
 
+
     @Override
     public String toString() {
         return this.getMeta() + " " + this.getStatus() + " " + this.getAddress() + " " + this.getRegisterDataType() + " " + this.getPriority() + " " + this.getRefId() + " " + this.getOut() + " " + this.getDescription();

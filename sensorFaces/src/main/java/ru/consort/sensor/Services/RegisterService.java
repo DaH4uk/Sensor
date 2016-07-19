@@ -14,15 +14,18 @@ import java.util.*;
 
 /**
  * Created by DaH4uk on 06.07.2016.
+ * Contains the implementation of methods for obtaining information about the registers.
+ * https://konsort.planfix.ru/task/32615
  */
 public class RegisterService {
 
-    private static Map<String, String> pathMap = new HashMap();
-    private static Map<String, Register> registersMap = new HashMap();
+    private static HashMap<String, String> pathMap = new HashMap<>();
+    private static HashMap<String, Register> registersMap = new HashMap<>();
     //инициализация конфига
     private static final ClientConfig config = new DefaultClientConfig();
     private static final Client client = Client.create(config);
-    private static final WebResource service = client.resource(UriBuilder.fromUri("http://127.0.0.1:5555/").build());
+    //Sedona web url
+    private static final WebResource service = client.resource(UriBuilder.fromUri("http://192.168.0.40:5555/").build());
     private static final JsonParser parser = new JsonParser();
 
 
@@ -31,52 +34,55 @@ public class RegisterService {
     }
 
     static {
+        //base type of registers
         pathMap.put("Discret/","Discrete Output Coil");
         pathMap.put("Numeric/", "Numeric Input Register");
         pathMap.put("Numeri1/", "Numeric Output Holding Register");
+        //login pass for sedona
         client.addFilter(new HTTPBasicAuthFilter("admin", ""));
 
     }
 
 
 
-
-    public static void getAllRegisters() {
-        for (String folder : pathMap.keySet()) {
-
+    //Implements update all registers information.
+    static void getAllRegisters() {
+        for (Object folder : pathMap.keySet()) {
+            //sets path of base type registers
             String jsonFolder = service.path("json").path("app/drivers/modbus/local/tcp502/slave1/points/" + folder).accept(MediaType.APPLICATION_JSON).get(String.class);
             JsonElement jsonElementFold = parser.parse(jsonFolder);
             JsonObject rootObjectFold = jsonElementFold.getAsJsonObject(); // чтение главного объекта
-
+            //Reading root element in json
             JsonObject jsonObject = rootObjectFold.getAsJsonObject("obj");
-
+            //Receiving a parameter array
             JsonArray jsonArrayFold = jsonObject.getAsJsonArray("ref");
+            //Getting references to registers
             for (JsonElement p : jsonArrayFold) {
                 String registerUrl = folder + p.getAsJsonObject().get("href").getAsString();
-//                System.out.println(registerUrl);
-//                System.out.println(RegisterService.getRegister(registerUrl));
                 registersMap.put(registerUrl,RegisterService.getRegister(registerUrl));
             }
         }
     }
 
+    //Getting information about 1 register
     private static Register getRegister(String url) {
 
-        // getting JSON data
+        // sets path of register
         String json = service.path("json").path("app/drivers/modbus/local/tcp502/slave1/points/" + url).accept(MediaType.APPLICATION_JSON).get(String.class);
 
         JsonParser parser = new JsonParser();
         JsonElement jsonElement = parser.parse(json);
         JsonObject rootObject = jsonElement.getAsJsonObject(); // чтение главного объекта
-
+        //Reading root element in json
         JsonObject object = rootObject.getAsJsonObject("obj");
         JsonArray jsonArray = new JsonArray();
-
+        //Reading fields
         JsonArray jsonArrayInt = object.getAsJsonArray("int");
         JsonArray jsonArrayShort = object.getAsJsonArray("short");
         JsonArray jsonArrayReal = object.getAsJsonArray("real");
         JsonArray jsonArrayString = object.getAsJsonArray("str");
 
+        //Creates a new Register object, parsing and sets fields
         Register register = new Register();
         if (jsonArrayInt != null)
             for (JsonElement o : jsonArrayInt) {

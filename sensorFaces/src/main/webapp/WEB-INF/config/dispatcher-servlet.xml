@@ -21,7 +21,7 @@
         <property name="prefix" value="/" />
 
     </bean>
-
+    <!--mapping -->
     <mvc:view-controller path="/index" view-name="/WEB-INF/views/index.jsp"/>
     <mvc:view-controller path="/json" view-name="/WEB-INF/views/rest/json.jsp"/>
     <mvc:view-controller path="/registers" view-name="/registers/registers.xhtml"/>

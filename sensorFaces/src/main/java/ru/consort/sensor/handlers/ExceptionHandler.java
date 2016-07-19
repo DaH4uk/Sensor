@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by DaH4uk on 06.07.2016.
+ * Implements the functionality of the exception handler and writes the stack trace to the log.
+ * https://konsort.planfix.ru/task/32615
  */
 @Component
 public class ExceptionHandler implements HandlerExceptionResolver {

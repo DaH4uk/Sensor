@@ -30,7 +30,7 @@ public class RegisterManagedBean implements Serializable {
     private Map<TreeNode, String> treeNodeStringMap = new HashMap<>();
     private String url;
 
-
+    //JSF view initialization
     @PostConstruct
     public void init() {
         root = new DefaultTreeNode("Points", null);
@@ -45,7 +45,7 @@ public class RegisterManagedBean implements Serializable {
         //запуск обновления информации о регистрах
         RegisterUpdateService.getInstance();
 
-
+        //RegistersMap parsing
         for (String s : RegisterService.getRegistersMap().keySet()) {
 
             if (s.substring(0, 7).equals("Numeric")) {
@@ -78,7 +78,7 @@ public class RegisterManagedBean implements Serializable {
         this.root = root;
     }
 
-
+    //implements the functionality of the select button
     public void displaySelectedSingle() {
         if (selectedNode != null) {
             //show message
@@ -94,7 +94,7 @@ public class RegisterManagedBean implements Serializable {
             options.put("contentHeight", "100%");
             options.put("headerElement", "customheader");
 
-
+            //send a url of the selected treenode in session map
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("url",treeNodeStringMap.get(selectedNode));
 
             RequestContext.getCurrentInstance().openDialog("registerInfo", options, null);
@@ -103,9 +103,6 @@ public class RegisterManagedBean implements Serializable {
         }
     }
 
-    public void saveRegister() {
-
-    }
 
     public void cancel() {
         RequestContext.getCurrentInstance().closeDialog(null);
