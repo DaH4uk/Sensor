@@ -25,7 +25,7 @@ public class RegisterService {
     private static final ClientConfig config = new DefaultClientConfig();
     private static final Client client = Client.create(config);
     //Sedona web url
-    private static final WebResource service = client.resource(UriBuilder.fromUri("http://192.168.0.40:5555/").build());
+    private static final WebResource service = client.resource(UriBuilder.fromUri("http://37.112.8.55:80/").build());
     private static final JsonParser parser = new JsonParser();
 
 
@@ -35,9 +35,9 @@ public class RegisterService {
 
     static {
         //base type of registers
-        pathMap.put("Discret/","Discrete Output Coil");
-        pathMap.put("Numeric/", "Numeric Input Register");
-        pathMap.put("Numeri1/", "Numeric Output Holding Register");
+//        pathMap.put("Discret/","Discrete Output Coil");
+        pathMap.put("AI/", "Analog Input");
+//        pathMap.put("Numeri1/", "Numeric Output Holding Register");
         //login pass for sedona
         client.addFilter(new HTTPBasicAuthFilter("admin", ""));
 
@@ -49,7 +49,8 @@ public class RegisterService {
     static void getAllRegisters() {
         for (Object folder : pathMap.keySet()) {
             //sets path of base type registers
-            String jsonFolder = service.path("json").path("app/drivers/modbus/local/tcp502/slave1/points/" + folder).accept(MediaType.APPLICATION_JSON).get(String.class);
+            String jsonFolder = service.path("json").path("app/drivers/modbus/remote/rtu1/slave1/points/" + folder).accept(MediaType.APPLICATION_JSON).get(String.class);
+
             JsonElement jsonElementFold = parser.parse(jsonFolder);
             JsonObject rootObjectFold = jsonElementFold.getAsJsonObject(); // чтение главного объекта
             //Reading root element in json
@@ -64,17 +65,20 @@ public class RegisterService {
         }
     }
 
+
     //Getting information about 1 register
     private static Register getRegister(String url) {
 
         // sets path of register
-        String json = service.path("json").path("app/drivers/modbus/local/tcp502/slave1/points/" + url).accept(MediaType.APPLICATION_JSON).get(String.class);
+        String json = service.path("json").path("app/drivers/modbus/remote/rtu1/slave1/points/" + url).accept(MediaType.APPLICATION_JSON).get(String.class);
 
         JsonParser parser = new JsonParser();
         JsonElement jsonElement = parser.parse(json);
         JsonObject rootObject = jsonElement.getAsJsonObject(); // чтение главного объекта
         //Reading root element in json
-        JsonObject object = rootObject.getAsJsonObject("obj");
+        JsonObject object = rootObject.getAsJsonObject("real");
+
+
         JsonArray jsonArray = new JsonArray();
         //Reading fields
         JsonArray jsonArrayInt = object.getAsJsonArray("int");

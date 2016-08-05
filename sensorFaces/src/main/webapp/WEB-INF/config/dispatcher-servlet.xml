@@ -26,6 +26,10 @@
     <mvc:view-controller path="/json" view-name="/WEB-INF/views/rest/json.jsp"/>
     <mvc:view-controller path="/registers" view-name="/registers/registers.xhtml"/>
     <mvc:view-controller path="/registerInfo" view-name="/registers/registerInfo.xhtml"/>
+    <mvc:view-controller path="/scheme" view-name="/scheme/scheme.xhtml"/>
+    <mvc:view-controller path="/info" view-name="/info/info.xhtml"/>
+    <mvc:view-controller path="/temperature" view-name="/temperature/temperature.xhtml"/>
+    <mvc:view-controller path="/graph" view-name="/graph/graph.xhtml"/>
 
 
 

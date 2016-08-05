@@ -46,7 +46,7 @@
 <div id="wrapper"/>
 
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; z-index: 1;">
     <div class="navbar-header">
 
         <a class="navbar-brand" href="/index">Сенсор</a>
@@ -74,7 +74,7 @@
     </ul>
     <!-- /.navbar-top-links -->
 
-    <div class="navbar-default sidebar" role="navigation">
+    <div class="navbar-default sidebar" role="navigation" style="z-index: 1">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
@@ -97,13 +97,16 @@
                     <a href="/registers"><i class="fa fa-wrench fa-fw"></i> Регистры</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-files-o fa-fw"></i> Примеры страниц<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="/">Страница входа</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
+                    <a href="/scheme"><i class="fa fa-random fa-fw"></i> Схема</a>
+                </li>
+                <li>
+                    <a href="/temperature"><i class="fa fa-tachometer fa-fw"></i> Желаемая температура</a>
+                </li>
+                <li>
+                    <a href="/graph"><i class="fa fa-bar-chart-o fa-fw"></i> Управление температурой подачи</a>
+                </li>
+                <li>
+                    <a href="/info"><i class="fa fa-info fa-fw"></i> Информация о системе</a>
                 </li>
             </ul>
         </div>
@@ -127,6 +130,10 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="/resources/dist/js/sb-admin-2.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css"/>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 </h:body>
 
 

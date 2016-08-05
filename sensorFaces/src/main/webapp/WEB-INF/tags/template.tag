@@ -88,18 +88,20 @@
                         <a href="/index"><i class="fa fa-files-o fa-fw"></i> Главная</a>
                     </li>
 
-                    </li>
                     <li>
                         <a href="/registers"><i class="fa fa-wrench fa-fw"></i> Регистры</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-files-o fa-fw"></i> Примеры страниц<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="/">Страница входа</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
+                        <a href="/scheme"><i class="fa fa-random fa-fw"></i> Схема</a>
+                    </li>
+                    <li>
+                        <a href="/temperature"><i class="fa fa-tachometer fa-fw"></i> Желаемая температура</a>
+                    </li>
+                    <li>
+                        <a href="/graph"><i class="fa fa-bar-chart-o fa-fw"></i> Управление температурой подачи</a>
+                    </li>
+                    <li>
+                        <a href="/info"><i class="fa fa-info fa-fw"></i> Информация о системе</a>
                     </li>
                 </ul>
             </div>

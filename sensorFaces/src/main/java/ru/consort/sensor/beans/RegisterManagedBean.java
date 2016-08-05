@@ -35,30 +35,31 @@ public class RegisterManagedBean implements Serializable {
     public void init() {
         root = new DefaultTreeNode("Points", null);
 
-        TreeNode numericNode = new DefaultTreeNode("Numeric Input Register", root);
-        TreeNode numeri1Node = new DefaultTreeNode("Numeric Output Holding Register", root);
-        TreeNode discretNode = new DefaultTreeNode("Discrete Output Coil", root);
+        TreeNode numericNode = new DefaultTreeNode("Analog Input", root);
+//        TreeNode numeri1Node = new DefaultTreeNode("Numeric Output Holding Register", root);
+//        TreeNode discretNode = new DefaultTreeNode("Discrete Output Coil", root);
         root.setSelectable(false);
-        numeri1Node.setSelectable(false);
+//        numeri1Node.setSelectable(false);
         numericNode.setSelectable(false);
-        discretNode.setSelectable(false);
+//        discretNode.setSelectable(false);
         //запуск обновления информации о регистрах
         RegisterUpdateService.getInstance();
 
         //RegistersMap parsing
         for (String s : RegisterService.getRegistersMap().keySet()) {
+            System.out.println(s.substring(0, 2));
+            if (s.substring(0, 2).equals("AI")) {
 
-            if (s.substring(0, 7).equals("Numeric")) {
                 TreeNode node = new DefaultTreeNode(RegisterService.getRegistersMap().get(s).getDescription(), numericNode);
                 treeNodeStringMap.put(node, s);
 
-            } else if (s.substring(0, 7).equals("Numeri1")) {
-                TreeNode node = new DefaultTreeNode(RegisterService.getRegistersMap().get(s).getDescription(), numeri1Node);
-                treeNodeStringMap.put(node, s);
-
-            } else if (s.substring(0, 7).equals("Discret")) {
-                TreeNode node = new DefaultTreeNode(RegisterService.getRegistersMap().get(s).getDescription(), discretNode);
-                treeNodeStringMap.put(node, s);
+//            } else if (s.substring(0, 7).equals("Numeri1")) {
+//                TreeNode node = new DefaultTreeNode(RegisterService.getRegistersMap().get(s).getDescription(), numeri1Node);
+//                treeNodeStringMap.put(node, s);
+//
+//            } else if (s.substring(0, 7).equals("Discret")) {
+//                TreeNode node = new DefaultTreeNode(RegisterService.getRegistersMap().get(s).getDescription(), discretNode);
+//                treeNodeStringMap.put(node, s);
             }
         }
 
