@@ -2,7 +2,9 @@ package ru.consort.sensor.beans;
 
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
-import org.primefaces.model.chart.*;
+import org.primefaces.model.charts.ChartData;
+import org.primefaces.model.charts.line.LineChartDataSet;
+import org.primefaces.model.charts.line.LineChartModel;
 import ru.consort.sensor.Services.GraphService;
 import ru.consort.sensor.entities.Parameter;
 
@@ -51,9 +53,9 @@ public class GraphBean {
     private LineChartModel initLinearModel() {
         LineChartModel model = new LineChartModel();
 
-        LineChartSeries series1 = new LineChartSeries();
+        ChartData series1 = new ChartData();
 
-        series1.set(15, 30);
+        series1.sset(15, 30);
         series1.set(5, 35);
         series1.set(-5, 50);
         series1.set(-15, 60);
@@ -61,7 +63,7 @@ public class GraphBean {
         series1.set(-30, 90);
 
 
-        model.addSeries(series1);
+        model.setData(series1);
 
 
         return model;

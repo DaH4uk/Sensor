@@ -1,6 +1,6 @@
 package ru.consort.sensor.beans;
 
-import org.primefaces.context.RequestContext;
+import org.primefaces.context.PrimeRequestContext;
 import org.primefaces.model.TreeNode;
 import ru.consort.sensor.Services.RegisterService;
 import javax.annotation.PostConstruct;
@@ -68,10 +68,6 @@ public class RegisterInfoBean {
         FacesMessage message = new FacesMessage("Сохранить: ", "Данный функционал еще не реализован");
         FacesContext.getCurrentInstance().addMessage(null, message);
 
-    }
-
-    public void cancel(){
-        RequestContext.getCurrentInstance().closeDialog(null);
     }
 
     public int getMeta() {
